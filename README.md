@@ -36,3 +36,12 @@ They are available on the following urls (assuming ur running locally):
 - [Radarr](http://localhost:7878/)
 - [Prowlarr](http://localhost:9696/)
 - [qBittorrent](http://localhost:8080/)
+
+## Credentials
+With the exception of plex, all the apps use the following credentials:
+
+```
+username: user
+password: pass
+
+```
