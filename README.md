@@ -1,7 +1,8 @@
 
 # Download
 
-Ready to use media management system
+Ready to use media management system.
+Set up minimally to be used out of the box without much setup.
 
 
 
