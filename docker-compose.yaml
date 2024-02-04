@@ -1,0 +1,102 @@
+version: "3.8"
+services:
+  qbittorrent:
+    image: ${QBIT_IMAGE}
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID}
+      - PUID=${PGID}
+      - TZ=${TZ}
+      - WEBUI_PORT=${QBIT_PORT}
+    volumes:
+      - ${CONFIG_DIR}/qbittorrent:/config
+      - ${CONFIG_DIR}/vuetorrent:/vuetorrent
+      - ${MEDIA_DIR}/downloads:/downloads
+    restart: ${DEFAULT_RESTART}
+    ports:
+      - "${QBIT_PORT}:${QBIT_PORT}" 
+      
+  flaresolverr:
+    image: ${FLARESOLVERR_IMAGE}
+    container_name: flaresolverr
+    environment:
+      - TZ=${TZ}
+    restart: ${DEFAULT_RESTART}
+    ports:
+      - "8191:8191" 
+
+  prowlarr:
+    image: ${PROWLARR_IMAGE}
+    container_name: prowlarr
+    environment:
+      - PUID=${PUID}
+      - PUID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_DIR}/prowlarr:/config
+    restart: ${DEFAULT_RESTART}
+    ports:
+      - "9696:9696" 
+    depends_on:
+      - qbittorrent
+      - flaresolverr
+
+  sonarr:
+    image: ${SONARR_IMAGE}
+    container_name: sonarr
+    environment:
+      - PUID=${PUID}
+      - PUID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_DIR}/sonarr:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}:/media
+    restart: ${DEFAULT_RESTART}
+    ports:
+      - "8989:8989" 
+
+  radarr:
+    image: ${RADARR_IMAGE}
+    container_name: radarr
+    environment:
+      - PUID=${PUID}
+      - PUID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_DIR}/radarr:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}:/media
+    restart: ${DEFAULT_RESTART}
+    ports:
+      - "7878:7878" 
+
+  medusa:
+    image: ${MEDUSA_IMAGE}
+    container_name: medusa
+    environment:
+      - PUID=${PUID}
+      - PUID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_DIR}/medusa:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}:/media
+    restart: ${DEFAULT_RESTART}
+    ports:
+      - "8081:8081"
+
+  plex:
+    image: ${PLEX_IMAGE}
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PUID=${PGID}
+      - TZ=${TZ}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM} 
+    volumes:
+      - ${CONFIG_DIR}/plex:/config
+      - ${MEDIA_DIR}:/media
+    restart: ${DEFAULT_RESTART}
