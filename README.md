@@ -8,7 +8,7 @@ Ready to use media management system
 
 ## Installation
 
-- Clone the repository and edit the .env file to reflect your preferences (optional).
+- Clone the repository and edit the .env file to reflect your preferences (optional) - if you don't run the container locally you at least need to create a plex claim token for your [Plex account](https://plex.tv/claim).
 - Pull the docker images and start the container
 
 ```bash
