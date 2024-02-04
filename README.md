@@ -28,7 +28,7 @@ After running the container, the following apps are available:
 - Prowlarr (for searching content)
 - qBittorrent (for downloading itself)
 
-They are available on the following urls (assuming ur running locally):
+They are available on the following urls (assuming you are running locally):
 
 - [Plex](http://localhost:32400/)
 - [Medusa](http://localhost:8081/)
