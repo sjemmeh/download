@@ -22,11 +22,11 @@ docker compose pull && docker compose up -d
 
 After running the container, the following apps are available:
 - Plex (for watching content)
-- Medusa (for downloading anime)
-- Sonarr (for downloading tv shows)
-- Radarr (for downloading movies)
+- Medusa (for anime)
+- Sonarr (for tv shows)
+- Radarr (for movies)
 - Prowlarr (for searching content)
-- qBittorrent (for downloading itself)
+- qBittorrent
 
 They are available on the following urls (assuming you are running locally):
 
